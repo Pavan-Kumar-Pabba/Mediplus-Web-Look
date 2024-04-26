@@ -6,17 +6,21 @@
   <title>Mediplus Customer Healthcare Visualization</title>
   <link rel="icon" type="image/x-icon" href="images\logo.png">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link rel="icon" type="image/x-icon" href="images\logo.png">
+        <link rel="stylesheet" href="appointmentstyle.css">
   <style>
     body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom right, #6d8cf2, #ffffff); /* Adjust colors and direction as needed */
-  margin: 0;
-  padding: 0;
-}
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
     .container {
       max-width: 800px;
       margin: 20px auto;
-      background-color: #c2f7bf;
+      background-color: #fff;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -34,34 +38,41 @@
       line-height: 1.5;
       color: #555;
     }
-    .about-us {
-   
-   padding: 10px; /* Reduced padding */
-   border-radius: 8px; /* Smaller border radius */
-   margin-bottom: 15px; /* Reduced margin bottom */
-   max-width: 600px; /* Reduced maximum width */
-   margin: 0 auto; /* Center the box horizontally */
-   border-color: black;
- }
- 
- .about-us h1 {
-   font-family: 'Arial Black', sans-serif;
-   font-size: 36px;
-   color: #333;
-   text-align: center;
-   letter-spacing: 2px;
-   margin-bottom: 20px;
-   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow with offset X and Y of 2px, blur radius of 4px, and color with 50% opacity */
+
+.footer1 {
+    background-color: rgb(65, 2, 65);
+    width: 100%;
+    padding: 20px 0; /* Adjust padding as needed */
+    text-align: center;
+    color: white; /* Set text color to white for better visibility */
+}
+
+.footer1 ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer1 ul li {
+    display: inline;
+    margin-right: 10px; /* Adjust spacing between list items */
 }
   </style>
 </head>
 <body>
-  <a href="mediplus.html"><img src="images/sidelogo.png" alt="" height="120px" width="250px" align="left"></a>
-  <div class="about-us">
-    <h1 class="heading">Patient Statistics</h1>
-
-  </div>
-  <header class="header">
+  <section id="sidebar">
+    <div class="inner">
+      <nav>
+        <ul>
+          <li><a href="mediplus.html">Welcome</a></li>
+          <li><a href="doctorinfo.html">Doctors</a></li>
+          <li><a href="datachart.html">Patient Statistics</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section> <br><br>
+  
   <div class="container">
     <h1>Patient details by type of service (In %)</h1>
     <div class="chart-container">
@@ -76,6 +87,22 @@
       <canvas id="ageChart"></canvas>
     </div>
     <p>Insight: The bar chart depicts the age distribution of patients, revealing interesting patterns. While patients aged 66 and above constitute the largest age group with 20.8%, there is also a substantial representation from the 3-10 age group at 17.4%. This suggests a need for healthcare services tailored to both the elderly population and pediatric patients.</p>
+  </div>
+
+  <div class="container">
+    <h2>Total Patients by State (In %)</h2>
+    <div class="chart-container">
+      <canvas id="stateChart"></canvas>
+    </div>
+    <p>Insight: The doughnut chart visualizes the distribution of patients across different states. Florida (FL) has the highest percentage of patients at 23.4%, followed by Texas (TX) at 17.5%. Other states also contribute to the patient population, with California (CA) at 14.59% and New York (NY) at 11.9%.</p>
+  </div>
+
+  <div class="container">
+    <h2>Total Patients by Type of Specialty Service (In %)</h2>
+    <div class="chart-container">
+      <canvas id="specialtyChart"></canvas>
+    </div>
+    <p>Insight: This chart presents the distribution of patients across various specialty services. Orthopedics has the highest percentage of patients at 30.5%, indicating a significant demand for orthopedic care. Other notable specialties include General (19.3%) and Neurology (14.3%).</p>
   </div>
 
   <script>
@@ -94,6 +121,26 @@
       labels: ["Age 0-3", "Age 3-10", "Age 10-18", "Age 18-25", "Age 25-40", "Age 40-65", "Age 66+"],
       datasets: [{
         data: [14.3, 17.4, 8.8, 12.3, 11.2, 15.2, 20.8],
+        backgroundColor: ["#2c3e50", "#2980b9", "#c0392b", "#27ae60", "#f39c12", "#8e44ad", "#16a085"],
+        borderWidth: 1
+      }]
+    };
+
+    // Data for state chart
+    var stateData = {
+      labels: ["California (CA)", "Texas (TX)", "New York (NY)", "Florida (FL)", "Illinois (IL)", "Pennsylvania (PA)", "Others (OTH)"],
+      datasets: [{
+        data: [14.59, 17.5, 11.9, 23.4, 9.94, 8.47, 14.2],
+        backgroundColor: ["#2c3e50", "#2980b9", "#c0392b", "#27ae60", "#f39c12", "#8e44ad", "#16a085"],
+        borderWidth: 1
+      }]
+    };
+
+    // Data for specialty chart
+    var specialtyData = {
+      labels: ["Cardiothoracic", "Neurology", "Orthopedics", "Oncology", "General", "Plastic and Reconstructive", "Others"],
+      datasets: [{
+        data: [8.8, 14.3, 30.5, 12.6, 19.3, 3.9, 10.6],
         backgroundColor: ["#2c3e50", "#2980b9", "#c0392b", "#27ae60", "#f39c12", "#8e44ad", "#16a085"],
         borderWidth: 1
       }]
@@ -142,6 +189,55 @@
         }
       }
     });
+
+    // State chart
+    var stateCtx = document.getElementById('stateChart').getContext('2d');
+    var stateChart = new Chart(stateCtx, {
+      type: 'doughnut',
+      data: stateData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            fontColor: '#333'
+          }
+        }
+      }
+    });
+
+    // Specialty chart
+    var specialtyCtx = document.getElementById('specialtyChart').getContext('2d');
+    var specialtyChart = new Chart(specialtyCtx, {
+      type: 'radar',
+      data: specialtyData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            fontColor: '#333'
+          }
+        },
+        scale: {
+          ticks: {
+            beginAtZero: true,
+            fontColor: '#333'
+          }
+        }
+      }
+    });
+
   </script>
+  <footer class="footer1">
+    <ul>
+        <li>&copy; Untitled. All rights reserved.</li>
+        <li>Design: <a href="http://myweb.usf.edu/~pabba1/Portfolio/resume.html">Group-5 DIS</a></li>
+    </ul>
+  </footer>
 </body>
 </html>

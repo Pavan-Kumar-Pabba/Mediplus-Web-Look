@@ -128,6 +128,7 @@ animation: scroll 40s linear infinite; /* Adjust duration as needed */
   justify-content: center; /* Center align items horizontally */
   align-items: flex-start; /* Align items to the top */
   flex-direction: column;
+
 }
 
 .form-container, .table-container {
@@ -141,13 +142,14 @@ animation: scroll 40s linear infinite; /* Adjust duration as needed */
 .form-container {
   width: 70%;
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 80px;
   margin-bottom: 50px;
   margin-left: 150px;
   margin-right: 20px;
-  background: linear-gradient(to bottom, rgba(114, 134, 245, 0.9), rgba(255, 255, 255, 0.9)); /* Apply gradient overlay */
+
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(101, 145, 249, 0.2);
+  
 }
 /* Add these styles to position the logo */
 .logo {
@@ -251,6 +253,7 @@ th, td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  color: black;
 }
 
 tr:hover {
@@ -300,6 +303,7 @@ text-align: center;
 .search-container label {
 display: block;
 font-weight: bold;
+color: black;
 }
 
 .search-container input[type="text"],
